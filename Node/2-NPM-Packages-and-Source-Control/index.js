@@ -1,0 +1,1 @@
+// Inside of the root folder create a .gitignore file to add all files/folders to be ignored. => node_modules
