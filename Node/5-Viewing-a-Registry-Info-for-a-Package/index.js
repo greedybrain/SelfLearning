@@ -1,0 +1,1 @@
+// Get all meta data for an npm package => npm view mongoose (package name)
