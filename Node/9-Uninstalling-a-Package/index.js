@@ -1,0 +1,1 @@
+// To uninstall a package => npm uninstall package or npm un package 
