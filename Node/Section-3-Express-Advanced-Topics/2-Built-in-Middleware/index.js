@@ -7,6 +7,10 @@ const Joi = joi
 
 // Adding a piece of middleware for 'app' to use
 app.use(express.json())
+// Concatenates our key/value pair objects
+app.use(express.urlencoded({ extended: true }))
+// Serves our static files from the root
+app.use(express.static('public'))
 
 // Custom middleware
 app.use(log)
@@ -52,7 +56,7 @@ app.post('/api/courses', (req, res) => {
      } = validateCourse(req.body);
      if (error) return res.status(400).send(error.details[0].message);
 
-     if (result.error) return res.status(400).send(result.error.details[0].message)
+     if (error) return res.status(400).send(error.details[0].message)
 
      const course = {
           id: courses.length + 1,
