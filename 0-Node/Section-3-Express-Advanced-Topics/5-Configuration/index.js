@@ -2,6 +2,7 @@ import joi from 'joi'
 import log from '../1-Creating-Custom-Middleware/logger.js'
 import helmet from 'helmet'
 import morgan from 'morgan'
+import config from 'config'
 import express from 'express'
 const app = express();
 const Joi = joi
@@ -15,6 +16,11 @@ app.use(express.urlencoded({
 // Serves our static files from the root
 app.use(express.static('public'))
 app.use(helmet())
+
+// Configuration 
+console.log(`Application Name: ${config.get('name')}`)
+console.log(`Mail Server: ${config.get('mail.host')}`)
+console.log(`Mail Password: ${config.get('mail.password')}`)
 
 if (app.get('env') === 'development') {
      // Logs the HTTP request that was made to the console
