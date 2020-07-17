@@ -1,0 +1,2 @@
+A middleware function is a function that takes a request object and either returns the response to the client or passes control to another middleware function
+=> Route handler functions (req, res) => {}
