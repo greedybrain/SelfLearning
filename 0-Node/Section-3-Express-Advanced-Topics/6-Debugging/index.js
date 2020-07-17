@@ -3,9 +3,12 @@ import log from '../1-Creating-Custom-Middleware/logger.js'
 import helmet from 'helmet'
 import morgan from 'morgan'
 import config from 'config'
+import debug from 'debug' // Must create env => export DEBUG=name:type
 import express from 'express'
 const app = express();
 const Joi = joi
+const startupDebugger = debug('app:startup')
+const dbDebugger = debug('app:db')
 
 // Adding a piece of middleware for 'app' to use
 app.use(express.json())
@@ -18,20 +21,20 @@ app.use(express.static('public'))
 app.use(helmet())
 
 // Configuration 
-console.log(`Application Name: ${config.get('name')}`)
-console.log(`Mail Server: ${config.get('mail.host')}`)
-console.log(`Mail Password: ${config.get('mail.password')}`)
+// console.log(`Application Name: ${config.get('name')}`)
+// console.log(`Mail Server: ${config.get('mail.host')}`)
+// console.log(`Mail Password: ${config.get('mail.password')}`)
 console.log(process.env.NODE_ENV)
 
 if (app.get('env') === 'development') {
      // Logs the HTTP request that was made to the console
      app.use(morgan('tiny'))
-     console.log("We're in development")
+     startupDebugger("Morgan enabled...")
 } else {
      console.log("Sorry, we're in production")
 }
-// Custom middleware
-app.use(log)
+
+dbDebugger("Connected to the database")
 
 const courses = [{
           id: 1,
