@@ -1,6 +1,9 @@
 import express from 'express'
 const app = express();
 
+// Adding a piece of middleware for 'app' to use
+app.use(express.json())
+
 const courses = [{
           id: 1,
           name: "course1",
@@ -15,11 +18,23 @@ const courses = [{
      },
 ];
 
+// GET Request - Root 
 app.get('/', (req, res) => {
      res.send("Hello Willis")
 })
 
+// GET Request
 app.get('/api/courses', (req, res) => {
+     res.send(courses)
+})
+
+// POST Request 
+app.post('/api/courses', (req, res) => {
+     const course = {
+          id: courses.length + 1,
+          name: req.body.name
+     }
+     courses.push(course)
      res.send(courses)
 })
 
