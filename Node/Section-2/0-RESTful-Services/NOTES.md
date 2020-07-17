@@ -1,0 +1,1 @@
+RESTful Services/API (Representational State Transfer) is when the Client and the Server communicates via HTTP requests, and with these requests we're able to Create Read Update and Delete data.
