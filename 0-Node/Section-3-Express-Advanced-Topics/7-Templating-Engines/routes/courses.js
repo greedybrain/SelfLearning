@@ -1,5 +1,5 @@
 import express from 'express'
-const coursesRouter = express.Router();
+const router = express.Router();
 
 const courses = [{
           id: 1,
@@ -16,19 +16,19 @@ const courses = [{
 ];
 
 // GET Request (READ)
-coursesRouter.get('/', (req, res) => {
+router.get('/', (req, res) => {
      res.send(courses)
 })
 
 // Includes request parameters (READ/SHOW)
-coursesRouter.get('/:id', (req, res) => {
+router.get('/:id', (req, res) => {
      const foundCourse = courses.find(course => course.id === parseInt(req.params.id))
      if (!foundCourse) return res.status(404).send(`The course with ID ${req.params.id} was not found.`)
      res.send(foundCourse)
 })
 
 // POST Request (CREATE)
-coursesRouter.post('/', (req, res) => {
+router.post('/', (req, res) => {
      const {
           error
      } = validateCourse(req.body);
@@ -46,7 +46,7 @@ coursesRouter.post('/', (req, res) => {
 })
 
 // PUT Request (UPDATE)
-coursesRouter.put('/:id', (req, res) => {
+router.put('/:id', (req, res) => {
      // Look up the course 
      const foundCourse = courses.find(course => course.id === parseInt(req.params.id))
      if (!foundCourse) return res.status(404).send("We couldn't find that course")
@@ -62,7 +62,7 @@ coursesRouter.put('/:id', (req, res) => {
 })
 
 // DELETE Request (DELETE)
-coursesRouter.delete('/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
      const foundCourse = courses.find((course) => course.id === parseInt(req.params.id));
      if (!foundCourse) return res.status(404).send("We couldn't find that course");
 
@@ -80,4 +80,4 @@ const validateCourse = course => {
      return schema.validate(course);
 }
 
-export default coursesRouter
+export { router }
