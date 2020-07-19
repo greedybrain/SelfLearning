@@ -1,8 +1,8 @@
 import joi from 'joi'
 import helmet from 'helmet'
-import homeRouter from './routes/home';
-import coursesRouter from './routes/courses';
 import express from 'express'
+import { router as home } from './routes/home.js'
+import { router as courses } from './routes/courses.js'
 const app = express();
 const Joi = joi
 
@@ -13,8 +13,8 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
 app.use(helmet())
-app.use('/api/courses', coursesRouter)
-app.use('/', homeRouter)
+app.use('/api/courses', courses)
+app.use('/', home)
 
 // =============PORT==============
 const port = process.env.PORT || 3000
