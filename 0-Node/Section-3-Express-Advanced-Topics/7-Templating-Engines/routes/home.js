@@ -1,13 +1,13 @@
 import express from 'express'
-const homeRouter = express.Router();
+const router = express.Router();
 
 // GET Request - Root (READ)
-homeRouter.get('/', (req, res) => {
+router.get('/', (req, res) => {
      res.render('index', {
           title: "My Express App",
           message: "Hello"
      })
 })
 
-export default homeRouter
+export { router }
 
