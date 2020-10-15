@@ -1,0 +1,17 @@
+<html lang="en">
+        <%- include('./partials/head.ejs') %>
+        <body>
+                <%- include('./partials/nav.ejs') %> 
+
+                <div class="form content">
+                        <form action="/" method="POST" class="new_blog">
+                                <input type="text" placeholder="title"><br>
+                                <input type="text" placeholder="snippet"><br>
+                                <textarea name="body" id="" cols="30" rows="10">
+                                </textarea><br>
+                                <button type="submit">Submit</button>
+                        </form>
+                </div>
+                <%- include('./partials/footer.ejs') %> 
+        </body>
+</html>
