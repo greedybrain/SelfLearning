@@ -1,6 +1,8 @@
 // VANILLA NODE ß
 const http = require('http');
-const { env } = require('process');
+const {
+        env
+} = require('process');
 const fs = require('fs');
 const _ = require('lodash');
 
@@ -17,7 +19,7 @@ const server = http.createServer((req, res) => {
 
         // send html file 
         let path = './views';
-        switch(req.url) {
+        switch (req.url) {
                 case '/':
                         path += '/index.html'
                         res.statusCode = 200
@@ -38,14 +40,14 @@ const server = http.createServer((req, res) => {
         }
 
         // reading data from file 
-        fs.readFile(path, (err, data) => {   
+        fs.readFile(path, (err, data) => {
                 if (err) console.log(err)
                 else res.end(data)
                 res.end()
         })
 })
 
-const PORT = env.PORT || 3000
-server.listen(PORT, 'localhost', () => {
-        console.log(`Listening on PORT ${PORT}`)
-})
+// const PORT = env.PORT || 3000
+// server.listen(PORT, 'localhost', () => {
+//         console.log(`Listening on PORT ${PORT}`)
+// })
