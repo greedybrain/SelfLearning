@@ -2,32 +2,29 @@
 const express = require('express');
 //! Morgan middleware library
 const morgan = require('morgan');
-
+const mongoose = require('mongoose');
 
 //! setup a express app 
 const app = express();
 
+//! connect to mongodb
+const dbURI = 'mongodb+srv://gb18:password1234@mongo-learning.lhqxa.mongodb.net/gb18?retryWrites=true&w=majority'
+mongoose.connect(dbURI, {
+                useNewUrlParser: true,
+                useUnifiedTopology: true
+        })
+        .then(() => {
+                app.listen(3000)
+                console.log('connected to db')
+        })
+        .catch(err => console.log(err))
+
 //! register view engine 
 app.set('view engine', 'ejs');
 
-//! listen for requests 
-app.listen(3000)
-
-//! middleware (runs synchronously)
-// app.use((req, res, next) => {
-//         console.log('new request made')
-//         console.log('host: ', req.hostname)
-//         console.log('path:  ', req.path)
-//         console.log('method: ', req.method)
-//         next()
-// })
-
-// app.use((req, res, next) => {
-//         console.log('in the next middleware')
-//         next()
-// })
-
-app.use(morgan('dev'))
+//! middleware (runs synchronously) / //! middleware & static files
+app.use(express.static('public'))
+app.use(morgan('dev')) //logs info to console
 
 // routes 
 app.get('/', (req, res) => {
